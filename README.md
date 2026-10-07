@@ -7,7 +7,7 @@
 
 
 <p align="center">
-    <img src="https://files.krizx.my.id/6XEGGo.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
+    <img src="https://px.zeroplay.my.id/uploads/files/b2b70b1f-fb7a-4a20-9f61-69c3ba281eab.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 
   ![Visitor Count](https://komarev.com/ghpvc/?username=shuzxie&color=blueviolet&style=plastic&label=PROFILE+VIEWS&abbreviated=true)
