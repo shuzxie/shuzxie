@@ -15,7 +15,7 @@
 <a href="#stats" align="center">
   <picture>
     <source 
-      srcset="https://github-stats-extended.vercel.app/api/wakatime?username=koiverse&layout=compact&custom_title=rukamori%20code%20stats&langs_count=8&display_format=percent&theme=github_dark_dimmed"
+      srcset="https://github-stats-extended.vercel.app/api/wakatime?username=koiverse&layout=compact&custom_title=Shuzxíe%20code%20stats&langs_count=8&display_format=percent&theme=github_dark_dimmed"
       media="(prefers-color-scheme: dark)"
     />
     <source
@@ -49,3 +49,5 @@
 |[Kagi](https://github.com/rukamori/Kagi): 🔐 A fast, minimal, and secure local-first password manager for desktop. | ![Stars](https://img.shields.io/github/stars/rukamori/Kagi?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Kagi?style=flat-square&labelColor=343b41) |
 |[ArchiveTune Canary](https://github.com/rukamori/canary): Canary Build of ArchiveTune. | ![Stars](https://img.shields.io/github/stars/rukamori/canary?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/canary?style=flat-square&labelColor=343b41) |
 |[Hikki](https://github.com/rukamori/Hikki): 📝 A cute, lightweight, and feature-rich notes app for Android, built with Material 3 Expressive. | ![Stars](https://img.shields.io/github/stars/rukamori/Hikki?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Hikki?style=flat-square&labelColor=343b41) |
+
+<img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%" style="transform: rotate(180deg);">
