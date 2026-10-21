@@ -2,123 +2,50 @@
     <img src="https://i.ibb.co/7Kk6XSg/Rainbow.gif" width="100%">
 </h1>
 
-<div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=35&pause=1000&color=blueviolet&center=true&vCenter=true&width=800&height=70&lines=I'm+Kriszzyy;Web+Developer+%7C+Tech+Enthusiast;Solving+Problems+%26+Building+Dreams" alt="Typing SVG" />
-
+#### こんにちは Hello 🐱
 
 <p align="center">
     <img src="https://px.zeroplay.my.id/uploads/files/b2b70b1f-fb7a-4a20-9f61-69c3ba281eab.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 
-  ![Visitor Count](https://komarev.com/ghpvc/?username=shuzxie&color=blueviolet&style=plastic&label=PROFILE+VIEWS&abbreviated=true)
-</div>
+<p align="center">
+    <img src="https://komarev.com/ghpvc/?username=shuzxie&color=blueviolet&style=plastic&label=PROFILE+VIEWS&abbreviated=true" alt="Visitor Count">
+</p>
 
-<br />
+<a href="#stats" align="center">
+  <picture>
+    <source 
+      srcset="https://github-stats-extended.vercel.app/api/wakatime?username=koiverse&layout=compact&custom_title=rukamori%20code%20stats&langs_count=8&display_format=percent&theme=github_dark_dimmed"
+      media="(prefers-color-scheme: dark)"
+    />
+    <source
+      srcset="https://github-stats-extended.vercel.app/api/wakatime?username=koiverse&layout=compact&custom_title=rukamori%20code%20stats&langs_count=8&display_format=percent&theme=catppuccin_latte"
+      media="(prefers-color-scheme: light), (prefers-color-scheme: no-preference)"
+    />
+    <img src="https://github-stats-extended.vercel.app/api/wakatime?username=koiverse&layout=compact&custom_title=rukamori%20code%20stats&langs_count=8&display_format=percent&theme=catppuccin_latte" />
+  </picture>
+</a>
 
----
+> [!TIP]  
+> I build open-source Android and desktop applications focused on music, privacy, and expressive interfaces. For collaboration, contact me at [me@miuka.moe](mailto:me@miuka.moe), or support my work through [miuka.moe/donate](https://miuka.moe/donate).
 
-## 🍃 About Me
-<div align="center">
-  <p>Hi, my name is <strong style="color:#00FFFF;">Kriszz Hayanasi</strong>, I'm from <strong>Indonesia</strong> 🇮🇩</p>
-  
-  <p>
-    <a href="https://github.com/shuzxie?tab=followers">
-      <img src="https://img.shields.io/github/followers/shuzxie?label=Follow&style=social&color=00FFFF" alt="GitHub followers"/>
-    </a>
-    <a href="https://github.com/shuzxie">
-      <img src="https://img.shields.io/github/stars/shuzxie?style=social&label=Stars" alt="GitHub stars"/>
-    </a>
-  </p>
-</div>
+#### 使用している言語とフレームワーク Languages & Frameworks I use
 
----
+![Languages & Frameworks I use](https://skillicons.dev/icons?i=kotlin,androidstudio,gradle,java,ts,js,nodejs,electron,postgres,mysql,git,github,vscode)
 
-## 🎵 Spotify Now Playing
-<div align="center">
-  <a href="https://open.spotify.com/track/3JjnGLK8IxkNLvo8Lb3KOM" target="_blank">
-    <img src="https://now-playing-on-spotify.vercel.app/api/spotify" alt="Spotify Now Playing" width="350"/>
-  </a>
-  
-  <br />
-  <small><em>00:00 ━❍──────── 12:27</em></small>
-  
-  <br />
-  <small><em>↻ㅤㅤ⊲ㅤㅤⅡㅤㅤ⊳ㅤㅤ↺</em></small>
-</div>
+#### 公開プロジェクト Public projects shared
 
-<br />
+> Full list open sourced in https://github.com/rukamori?tab=repositories
 
----
+| Opengraph 2022 | Opengraph 2024 | Opengraph 2025 |
+| --- | --- | --- |
+| ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner1.png) | ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner2.png) | ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner3.png) |
 
-## 📊 GitHub Stats
-<div align="center">
-  
-  <table>
-    <tr>
-      <td>
-        <img src="https://github-readme-streak-stats.herokuapp.com/?user=shuzxie&theme=dark&background=dark&stroke=pink&ring=red&fire=blueviolet&currStreakLabel=cyan" alt="GitHub Streak" width="100%" />
-      </td>
-    </tr>
-  </table>
-  
-</div>
+#### 注目のプロジェクト Highlights
 
-<br />
-
----
-
-## 🌐 Social Media
-<div align="center">
-
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/shuzxie)
-[![WhatsApp Channel](https://img.shields.io/badge/WhatsApp_Channel-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://whatsapp.com/channel/0029VbCMM4VLikgFv0JplT2D)
-[![Telegram Channel](https://img.shields.io/badge/Telegram_Channel-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://t.me/Kyxd404)
-[![Instagram](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://instagram.com/kemii.learning)
-[![YouTube](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtube.com/kriszzyy)
-[![Website](https://img.shields.io/badge/Website-0A0A0A?style=for-the-badge&logo=wordpress&logoColor=white)](https://kriszzyy.xyz)
-
-</div>
-
-<br />
-
----
-
-## 📞 Contact Me
-<div align="center">
-
-[![WhatsApp](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://wa.me/255677748235)
-[![Telegram](https://img.shields.io/badge/Telegram-26A5E4?style=for-the-badge&logo=telegram&logoColor=white)](https://kriszzyy.t.me)
-[![Email](https://img.shields.io/badge/Gmail-EA4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:kriszztzyofficial@gmail.com)
-
-</div>
-
-<br />
-
----
-
-<div align="center">
-  
-  ## ✨ Technologies I Use
-  
-  ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-  ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-  ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-  ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
-  ![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=black)
-  ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white)
-  ![VS Code](https://img.shields.io/badge/VS_Code-007ACC?style=for-the-badge&logo=visualstudiocode&logoColor=white)
-  
-</div>
-
-<br />
-
----
-
-<div align="center">
-  <h3>🚀 Thanks for visiting my profile!</h3>
-  <p>Have a great day! ✨</p>
-  
-  <br />
-  
-  <img src="https://capsule-render.vercel.app/api?type=waving&color=00FFFF&height=80&section=footer&text=Keep+Coding+enjoy+coding!&fontSize=30&fontColor=FFFFFF&animation=twinkling" alt="Footer" />
-</div>
+|Projects|Stars|Forks|
+|:---|:---|:---|
+|[ArchiveTune](https://github.com/rukamori/ArchiveTune): 🎵 The cutest Material 3 Expressive music player for Android, with local-file and YouTube Music support. | ![Stars](https://img.shields.io/github/stars/rukamori/ArchiveTune?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/ArchiveTune?style=flat-square&labelColor=343b41) |
+|[Kagi](https://github.com/rukamori/Kagi): 🔐 A fast, minimal, and secure local-first password manager for desktop. | ![Stars](https://img.shields.io/github/stars/rukamori/Kagi?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Kagi?style=flat-square&labelColor=343b41) |
+|[ArchiveTune Canary](https://github.com/rukamori/canary): Canary Build of ArchiveTune. | ![Stars](https://img.shields.io/github/stars/rukamori/canary?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/canary?style=flat-square&labelColor=343b41) |
+|[Hikki](https://github.com/rukamori/Hikki): 📝 A cute, lightweight, and feature-rich notes app for Android, built with Material 3 Expressive. | ![Stars](https://img.shields.io/github/stars/rukamori/Hikki?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Hikki?style=flat-square&labelColor=343b41) |
