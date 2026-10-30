@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shuzxíe — CDN Uploader</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:#0a0a0a; --fg:#f5f5f5; --muted:#8a8a8a; --border:#262626; --border-strong:#f5f5f5;
+    --surface:#141414; --danger:#ff6b5b; --success:#4ade80;
+  }
+  html[data-theme="light"] {
+    --bg:#f0fdf4; --fg:#064e3b; --muted:#52796f; --border:#a7d7c0; --border-strong:#047857;
+    --surface:#ecfdf5; --danger:#c0392b; --success:#047857;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--fg);min-height:100vh;transition:background .25s ease,color .25s ease;-webkit-font-smoothing:antialiased;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+  .frame{max-width:640px;margin:0 auto;padding:56px 24px 80px;}
+
+  .topbar{display:flex;justify-content:space-between;align-items:flex-start;padding-bottom:36px;border-bottom:1px solid var(--border);margin-bottom:40px;}
+  .brand{display:flex;flex-direction:column;gap:6px;}
+  .brand-mark{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);}
+  .brand-title{font-size:28px;font-weight:700;letter-spacing:-0.01em;}
+  .theme-toggle{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;background:transparent;border:1px solid var(--border-strong);color:var(--fg);padding:8px 14px;cursor:pointer;display:flex;align-items:center;gap:8px;transition:background .2s ease,color .2s ease;white-space:nowrap;}
+  .theme-toggle:hover{background:var(--fg);color:var(--bg);}
+  .theme-toggle .dot{width:7px;height:7px;border-radius:50%;background:currentColor;}
+
+  .modes{display:flex;border:1px solid var(--border);margin-bottom:32px;}
+  .mode-btn{flex:1;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:14px 10px;background:transparent;border:none;color:var(--muted);cursor:pointer;position:relative;transition:color .2s ease;}
+  .mode-btn + .mode-btn{border-left:1px solid var(--border);}
+  .mode-btn.active{color:var(--fg);}
+  .mode-btn.active::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--fg);}
+  .mode-panel{display:none;}
+  .mode-panel.active{display:block;animation:rise .3s ease;}
+  @keyframes rise{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .dropzone{position:relative;border:1px solid var(--border);padding:56px 24px;text-align:center;cursor:pointer;transition:border-color .2s ease;}
+  .dropzone::before,.dropzone::after{content:"";position:absolute;width:14px;height:14px;border-color:var(--border-strong);transition:width .2s ease,height .2s ease;}
+  .dropzone::before{top:-1px;left:-1px;border-top:2px solid;border-left:2px solid;}
+  .dropzone::after{bottom:-1px;right:-1px;border-bottom:2px solid;border-right:2px solid;}
+  .dropzone.dragover{border-color:var(--border-strong);background:var(--surface);}
+  .dropzone.dragover::before,.dropzone.dragover::after{width:22px;height:22px;}
+  .dz-label{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+  .dz-title{font-size:17px;font-weight:600;}
+  .dz-title span{border-bottom:1px solid var(--fg);}
+  .dz-sub{font-size:12px;color:var(--muted);margin-top:10px;font-family:'JetBrains Mono',monospace;}
+
+  .manifest{display:none;margin-top:20px;border:1px solid var(--border);}
+  .manifest.show{display:block;animation:rise .3s ease;}
+  .manifest-row{display:flex;justify-content:space-between;gap:16px;padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border);}
+  .manifest-row:last-child{border-bottom:none;}
+  .manifest-row .k{font-family:'JetBrains Mono',monospace;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-size:11px;padding-top:2px;white-space:nowrap;}
+  .manifest-row .v{text-align:right;word-break:break-all;font-weight:600;}
+  .manifest-remove{color:var(--danger);font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.06em;cursor:pointer;background:none;border:none;}
+
+  .field label{display:block;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:10px;}
+  .field input[type="text"]{width:100%;padding:16px;border:1px solid var(--border);background:transparent;color:var(--fg);font-family:'JetBrains Mono',monospace;font-size:14px;}
+  .field input[type="text"]:focus{outline:none;border-color:var(--border-strong);}
+  .field input[type="text"]::placeholder{color:var(--muted);}
+
+  .btn-submit{width:100%;margin-top:24px;padding:16px;background:var(--fg);color:var(--bg);border:1px solid var(--fg);font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;cursor:pointer;transition:opacity .2s ease;display:flex;align-items:center;justify-content:center;gap:10px;}
+  .btn-submit:hover:not(:disabled){opacity:.8;}
+  .btn-submit:disabled{opacity:.5;cursor:not-allowed;}
+  .btn-submit .spinner{display:none;width:14px;height:14px;border:2px solid var(--bg);border-top-color:transparent;border-radius:50%;animation:spin .7s linear infinite;}
+  .btn-submit.loading .spinner{display:block;}
+  .btn-submit.loading .btn-text{display:none;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+
+  .visibility-note{margin-top:14px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.02em;text-align:center;}
+
+  .result{display:none;margin-top:40px;border:1px solid var(--border-strong);}
+  .result.show{display:block;animation:rise .35s ease;}
+  .result-head{display:flex;justify-content:space-between;align-items:center;padding:16px 18px;border-bottom:1px solid var(--border);}
+  .result-status{font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;}
+  .result.ok .result-status{color:var(--fg);}
+  .result.fail .result-status{color:var(--danger);}
+  .result-time{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);}
+  .result-body .manifest-row .v a{color:var(--fg);}
+  .result-actions{display:flex;border-top:1px solid var(--border);}
+  .result-actions button{flex:1;padding:14px;background:transparent;border:none;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg);cursor:pointer;transition:background .2s ease;}
+  .result-actions button + button{border-left:1px solid var(--border);}
+  .result-actions button:hover{background:var(--surface);}
+
+  .footer-note{margin-top:56px;text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);letter-spacing:.04em;}
+
+  .docs{margin-top:72px;padding-top:36px;border-top:1px solid var(--border);}
+  .docs-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+  .docs-title{font-size:22px;font-weight:700;letter-spacing:-0.01em;margin-bottom:32px;}
+  .doc-block{margin-bottom:28px;}
+  .doc-block-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:12px;}
+  .doc-label{font-size:14px;font-weight:600;}
+  .doc-desc{font-size:12px;color:var(--muted);margin-top:2px;}
+  .doc-method{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;color:var(--muted);border:1px solid var(--border);padding:2px 8px;white-space:nowrap;}
+  .codeblock{position:relative;border:1px solid var(--border);background:var(--surface);}
+  .codeblock pre{margin:0;padding:18px 46px 18px 18px;overflow-x:auto;font-family:'JetBrains Mono',monospace;font-size:12.5px;line-height:1.65;color:var(--fg);white-space:pre;}
+  .codeblock .cm{color:var(--muted);}
+  .code-copy{position:absolute;top:12px;right:12px;background:transparent;border:1px solid var(--border);color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.06em;text-transform:uppercase;padding:5px 9px;cursor:pointer;transition:color .2s ease,border-color .2s ease;}
+  .code-copy:hover{color:var(--fg);border-color:var(--border-strong);}
+
+  .params-table{width:100%;border-collapse:collapse;font-size:12.5px;border:1px solid var(--border);}
+  .params-table th,.params-table td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--border);}
+  .params-table th{font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--surface);}
+  .params-table td:first-child{font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+  .params-table tr:last-child td{border-bottom:none;}
+  .params-note{font-size:12px;color:var(--muted);margin-top:8px;}
+
+  .field textarea{width:100%;padding:16px;border:1px solid var(--border);background:transparent;color:var(--fg);font-family:'JetBrains Mono',monospace;font-size:13px;line-height:1.6;resize:vertical;min-height:120px;}
+  .field textarea:focus{outline:none;border-color:var(--border-strong);}
+  .field textarea::placeholder{color:var(--muted);}
+  .notice{display:none;margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--danger);}
+  .notice.show{display:block;}
+  .manifest-head{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid var(--border);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);}
+  .file-row{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:12px 16px;font-size:13px;border-bottom:1px solid var(--border);}
+  .file-row:last-child{border-bottom:none;}
+  .file-row .fn{font-weight:600;word-break:break-all;}
+  .file-row .fs{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--muted);margin-top:2px;}
+  .file-item{border-bottom:1px solid var(--border);padding:6px 0;}
+  .file-item:last-child{border-bottom:none;}
+  .file-item .manifest-row{border-bottom:none;padding:7px 16px;}
+
+  @media (max-width:480px){
+    .frame{padding:36px 18px 60px;}
+    .brand-title{font-size:22px;}
+    .dropzone{padding:40px 16px;}
+    .codeblock pre{font-size:11.5px;}
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+
+  <div class="topbar">
+    <div class="brand">
+      <div class="brand-mark">Shuzxíe CDN Transfer</div>
+      <div class="brand-title">Uploader</div>
+    </div>
+    <button class="theme-toggle" id="themeToggle" type="button">
+      <span class="dot"></span>
+      <span id="themeLabel">Dark</span>
+    </button>
+  </div>
+
+  <div class="modes">
+    <button class="mode-btn active" data-mode="file">File</button>
+    <button class="mode-btn" data-mode="url">URL</button>
+  </div>
+
+  <div class="mode-panel active" id="mode-file">
+    <form id="uploadForm">
+      <div class="dropzone" id="dropZone">
+        <div class="dz-label">Drop target</div>
+        <div class="dz-title">Drag file here, or <span>browse</span></div>
+        <div class="dz-sub">Maks 5 file &middot; 100MB per file</div>
+      </div>
+      <input type="file" id="fileInput" multiple style="display:none;">
+      <div class="notice" id="fileNotice"></div>
+
+      <div class="manifest" id="filePreview">
+        <div class="manifest-head"><span id="fileCount">0 / 5 file</span><button type="button" class="manifest-remove" id="clearFiles">Clear all</button></div>
+        <div id="fileList"></div>
+      </div>
+
+      <button type="submit" class="btn-submit" id="btnUploadFile">
+        <span class="btn-text">Upload to CDN</span>
+        <div class="spinner"></div>
+      </button>
+      <div class="visibility-note">File akan diupload sebagai publik &mdash; siapa saja dengan link bisa mengakses.</div>
+    </form>
+  </div>
+
+  <div class="mode-panel" id="mode-url">
+    <form id="urlForm">
+      <div class="field">
+        <label for="urlInput">Source URL (maks 5, satu per baris)</label>
+        <textarea id="urlInput" placeholder="https://example.com/file.pdf&#10;https://example.com/foto.jpg" required></textarea>
+      </div>
+      <button type="submit" class="btn-submit" id="btnUploadUrl">
+        <span class="btn-text">Upload to CDN</span>
+        <div class="spinner"></div>
+      </button>
+      <div class="visibility-note">File akan diupload sebagai publik &mdash; siapa saja dengan link bisa mengakses.</div>
+    </form>
+  </div>
+
+  <div class="result" id="result">
+    <div class="result-head">
+      <span class="result-status" id="resultStatus">Complete</span>
+      <span class="result-time" id="resultTime"></span>
+    </div>
+    <div class="result-body" id="resultDetails"></div>
+    <div class="result-actions">
+      <button type="button" id="copyLink">Copy all links</button>
+      <button type="button" id="copyJson">Copy JSON</button>
+    </div>
+  </div>
+
+  <div class="docs">
+    <div class="docs-eyebrow">Reference</div>
+    <div class="docs-title">API</div>
+
+    <div class="doc-block">
+      <div class="doc-block-head">
+        <div>
+          <div class="doc-label">Upload file</div>
+          <div class="doc-desc">Multipart form. Ulangi field <span class="mono">file</span> untuk upload sampai 5 file sekaligus.</div>
+        </div>
+        <span class="doc-method">POST /api/upload-file</span>
+      </div>
+      <div class="codeblock">
+        <pre id="code-upload-file"><span class="cm"># 1 file</span>
+curl -X POST __ORIGIN__/api/upload-file \
+  -F "file=@/path/to/file.pdf"
+
+<span class="cm"># banyak file (maks 5)</span>
+curl -X POST __ORIGIN__/api/upload-file \
+  -F "file=@a.jpg" \
+  -F "file=@b.png" \
+  -F "file=@c.pdf"</pre>
+        <button class="code-copy" data-target="code-upload-file">Copy</button>
+      </div>
+    </div>
+
+    <div class="doc-block">
+      <div class="doc-block-head">
+        <div>
+          <div class="doc-label">Upload via URL</div>
+          <div class="doc-desc">Server narik file dari URL, lalu diteruskan ke CDN. Pakai <span class="mono">url</span> atau <span class="mono">urls</span> (array, maks 5).</div>
+        </div>
+        <span class="doc-method">POST /api/upload-url</span>
+      </div>
+      <div class="codeblock">
+        <pre id="code-upload-url"><span class="cm"># 1 url</span>
+curl -X POST __ORIGIN__/api/upload-url \
+  -H "Content-Type: application/json" \
+  -d '{"url": "https://example.com/file.pdf"}'
+
+<span class="cm"># banyak url</span>
+curl -X POST __ORIGIN__/api/upload-url \
+  -H "Content-Type: application/json" \
+  -d '{"urls": ["https://example.com/a.jpg", "https://example.com/b.png"]}'</pre>
+        <button class="code-copy" data-target="code-upload-url">Copy</button>
+      </div>
+    </div>
+
+    <div class="doc-block">
+      <div class="doc-block-head">
+        <div>
+          <div class="doc-label">Response</div>
+          <div class="doc-desc">Sama untuk kedua endpoint. Status 200 jika minimal 1 file berhasil.</div>
+        </div>
+        <span class="doc-method">200 OK</span>
+      </div>
+      <div class="codeblock">
+        <pre id="code-response">{
+  <span class="cm">"success"</span>: true,
+  <span class="cm">"count"</span>: 2,
+  <span class="cm">"successCount"</span>: 1,
+  <span class="cm">"failedCount"</span>: 1,
+  <span class="cm">"files"</span>: [
+    {
+      <span class="cm">"success"</span>: true,
+      <span class="cm">"url"</span>: "https://px.zeroplay.my.id/uploads/files/abc.jpeg",
+      <span class="cm">"filename"</span>: "abc.jpeg",
+      <span class="cm">"originalName"</span>: "foto.jpeg",
+      <span class="cm">"size"</span>: 47257,
+      <span class="cm">"mimeType"</span>: "image/jpeg"
+    },
+    {
+      <span class="cm">"success"</span>: false,
+      <span class="cm">"originalName"</span>: "https://example.com/x.zip",
+      <span class="cm">"error"</span>: "Ukuran file melebihi 100MB"
+    }
+  ]
+}</pre>
+        <button class="code-copy" data-target="code-response">Copy</button>
+      </div>
+    </div>
+
+    <div class="doc-block">
+      <div class="doc-block-head"><div><div class="doc-label">Fields</div></div></div>
+      <table class="params-table">
+        <thead><tr><th>Field</th><th>Type</th><th>Keterangan</th></tr></thead>
+        <tbody>
+          <tr><td>file</td><td>form-data</td><td>Binary file, boleh diulang (maks 5).</td></tr>
+          <tr><td>url / urls</td><td>string / array</td><td>URL sumber file (maks 5).</td></tr>
+          <tr><td>files[].url</td><td>string</td><td>Link publik file di CDN.</td></tr>
+          <tr><td>files[].filename</td><td>string</td><td>Nama file yang tersimpan.</td></tr>
+          <tr><td>files[].originalName</td><td>string</td><td>Nama file asli / URL sumber.</td></tr>
+          <tr><td>files[].size</td><td>number</td><td>Ukuran file dalam bytes.</td></tr>
+          <tr><td>files[].error</td><td>string</td><td>Alasan gagal (jika success: false).</td></tr>
+        </tbody>
+      </table>
+      <div class="params-note">Maks 5 file per request, 100MB per file. Error validasi: <span class="mono">{"success": false, "error": "..."}</span></div>
+    </div>
+  </div>
+
+  <div class="footer-note">Transfer &mdash; Shuzxíe Vayne.</div>
+</div>
+
+<script>
+  const root = document.documentElement;
+  const themeLabel = document.getElementById('themeLabel');
+
+  function applyTheme(theme){
+    root.setAttribute('data-theme', theme);
+    themeLabel.textContent = theme === 'dark' ? 'Light' : 'Dark';
+    try { localStorage.setItem('uploader-theme', theme); } catch (e) {}
+  }
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('uploader-theme'); } catch (e) {}
+  applyTheme(savedTheme || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+  document.getElementById('themeToggle').addEventListener('click', () => {
+    applyTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+  });
+
+  document.querySelectorAll('.codeblock pre').forEach(pre => {
+    pre.innerHTML = pre.innerHTML.replace(/__ORIGIN__/g, location.origin);
+  });
+
+  const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  function formatFileSize(bytes){
+    if (!bytes) return '0 B';
+    const k = 1024, sizes = ['B','KB','MB','GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+  }
+  const MAX_SIZE = 100 * 1024 * 1024;
+
+  document.querySelectorAll('.mode-btn').forEach(btn => {
+    btn.addEventListener('click', function(){
+      document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.mode-panel').forEach(p => p.classList.remove('active'));
+      this.classList.add('active');
+      document.getElementById('mode-' + this.dataset.mode).classList.add('active');
+      hideResult();
+    });
+  });
+
+  const MAX_FILES = 5;
+  const dropZone = document.getElementById('dropZone');
+  const fileInput = document.getElementById('fileInput');
+  const filePreview = document.getElementById('filePreview');
+  const fileList = document.getElementById('fileList');
+  const fileNotice = document.getElementById('fileNotice');
+  let selected = [];
+
+  function notice(msg){
+    fileNotice.textContent = msg || '';
+    fileNotice.classList.toggle('show', !!msg);
+  }
+
+  function addFiles(list){
+    const msgs = [];
+    for (const f of list){
+      if (selected.length >= MAX_FILES){ msgs.push(`Maksimal ${MAX_FILES} file.`); break; }
+      if (f.size > MAX_SIZE){ msgs.push(`${f.name}: melebihi 100MB.`); continue; }
+      selected.push(f);
+    }
+    notice(msgs.join(' '));
+    renderFiles();
+  }
+
+  function renderFiles(){
+    document.getElementById('fileCount').textContent = `${selected.length} / ${MAX_FILES} file`;
+    filePreview.classList.toggle('show', selected.length > 0);
+    fileList.innerHTML = selected.map((f, i) => `
+      <div class="file-row">
+        <div><div class="fn">${esc(f.name)}</div><div class="fs">${formatFileSize(f.size)}</div></div>
+        <button type="button" class="manifest-remove" data-i="${i}">Remove</button>
+      </div>`).join('');
+  }
+
+  dropZone.addEventListener('click', () => fileInput.click());
+  dropZone.addEventListener('dragover', e => { e.preventDefault(); dropZone.classList.add('dragover'); });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('dragover'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('dragover');
+    addFiles(Array.from(e.dataTransfer.files));
+  });
+  fileInput.addEventListener('change', function(){
+    addFiles(Array.from(this.files));
+    this.value = '';
+  });
+  fileList.addEventListener('click', e => {
+    const btn = e.target.closest('[data-i]');
+    if (!btn) return;
+    selected.splice(Number(btn.dataset.i), 1);
+    notice('');
+    renderFiles();
+  });
+  document.getElementById('clearFiles').addEventListener('click', () => {
+    selected = [];
+    notice('');
+    renderFiles();
+  });
+
+  document.getElementById('uploadForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (!selected.length) return showResult({ success: false, error: 'Pilih file dulu' });
+
+    const btn = document.getElementById('btnUploadFile');
+    btn.classList.add('loading'); btn.disabled = true;
+
+    const formData = new FormData();
+    selected.forEach(f => formData.append('file', f));
+
+    try {
+      const response = await fetch('/api/upload-file', { method: 'POST', body: formData });
+      const data = await response.json();
+      showResult(data);
+      if (data.successCount > 0){ selected = []; renderFiles(); }
+    } catch (error) {
+      showResult({ success: false, error: error.message });
+    } finally {
+      btn.classList.remove('loading'); btn.disabled = false;
+    }
+  });
+
+  document.getElementById('urlForm').addEventListener('submit', async e => {
+    e.preventDefault();
+    const urls = document.getElementById('urlInput').value.split('\n').map(u => u.trim()).filter(Boolean);
+    if (!urls.length) return;
+    if (urls.length > MAX_FILES) return showResult({ success: false, error: `Maksimal ${MAX_FILES} URL` });
+
+    const btn = document.getElementById('btnUploadUrl');
+    btn.classList.add('loading'); btn.disabled = true;
+
+    try {
+      const response = await fetch('/api/upload-url', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ urls })
+      });
+      showResult(await response.json());
+    } catch (error) {
+      showResult({ success: false, error: error.message });
+    } finally {
+      btn.classList.remove('loading'); btn.disabled = false;
+    }
+  });
+
+  function hideResult(){ document.getElementById('result').className = 'result'; }
+  let lastData = null;
+  let currentLinks = [];
+
+  function showResult(data){
+    lastData = data;
+    const result = document.getElementById('result');
+    const status = document.getElementById('resultStatus');
+    const details = document.getElementById('resultDetails');
+    document.getElementById('resultTime').textContent =
+      new Date().toLocaleTimeString('id-ID', { hour: '2-digit', minute: '2-digit' });
+
+    const files = Array.isArray(data.files) ? data.files : null;
+
+    if (files && files.length){
+      currentLinks = files.filter(f => f.success).map(f => f.url);
+      const ok = currentLinks.length;
+      if (ok === files.length){ result.className = 'result show ok'; status.textContent = `Complete · ${ok} file`; }
+      else if (ok > 0){ result.className = 'result show ok'; status.textContent = `Partial · ${ok}/${files.length}`; }
+      else { result.className = 'result show fail'; status.textContent = 'Failed'; }
+
+      details.innerHTML = files.map(f => f.success ? `
+        <div class="file-item">
+          <div class="manifest-row"><span class="k">Name</span><span class="v">${esc(f.originalName || f.filename)}</span></div>
+          <div class="manifest-row"><span class="k">Size</span><span class="v">${formatFileSize(f.size)}</span></div>
+          <div class="manifest-row"><span class="k">Link</span><span class="v"><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.url)}</a></span></div>
+        </div>` : `
+        <div class="file-item">
+          <div class="manifest-row"><span class="k">Name</span><span class="v">${esc(f.originalName)}</span></div>
+          <div class="manifest-row"><span class="k">Error</span><span class="v" style="color:var(--danger);">${esc(f.error || 'Gagal')}</span></div>
+        </div>`).join('');
+    } else {
+      currentLinks = [];
+      result.className = 'result show fail';
+      status.textContent = 'Failed';
+      details.innerHTML = `<div class="manifest-row"><span class="k">Error</span><span class="v" style="color:var(--danger);">${esc(data.error || 'Terjadi kesalahan')}</span></div>`;
+    }
+    result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+
+  function flash(btn, text){
+    const original = btn.textContent;
+    btn.textContent = text;
+    setTimeout(() => btn.textContent = original, 1500);
+  }
+  document.getElementById('copyLink').addEventListener('click', function(){
+    if (!currentLinks.length) return;
+    navigator.clipboard.writeText(currentLinks.join('\n')).then(() => flash(this, 'Copied'));
+  });
+  document.getElementById('copyJson').addEventListener('click', function(){
+    if (!lastData) return;
+    navigator.clipboard.writeText(JSON.stringify(lastData, null, 2)).then(() => flash(this, 'Copied'));
+  });
+
+  document.querySelectorAll('.code-copy').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      navigator.clipboard.writeText(target.textContent).then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => btn.textContent = original, 1500);
+      });
+    });
+  });
+</script>
+</body>
+</html>
