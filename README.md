@@ -5,7 +5,7 @@
 #### こんにちは Hello 🐱
 
 <p align="center">
-    <img src="https://px.zeroplay.my.id/uploads/files/b2b70b1f-fb7a-4a20-9f61-69c3ba281eab.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
+    <img src="https://shuzxie.github.io/shuzxie/data/img/8b12ac2d3915a81502da4c72cfc19d10.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 
 <p align="center">
