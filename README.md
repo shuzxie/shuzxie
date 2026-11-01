@@ -1,5 +1,5 @@
 <h1 align="center">
-    <img src="https://i.ibb.co/7Kk6XSg/Rainbow.gif" width="100%">
+    <img src="https://shuzxie.github.io/shuzxie/data/vid/Rainbow.gif" width="100%">
 </h1>
 
 #### こんにちは Hello 🐱
