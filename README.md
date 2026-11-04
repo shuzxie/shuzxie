@@ -2,10 +2,10 @@
     <img src="https://shuzxie.github.io/shuzxie/data/vid/Rainbow.gif" width="100%">
 </h1>
 
-#### こんにちは Hello 🐱
+#### こんにちは Hello! I'm Shuzxíe Vayna. 🐱
 
 <p align="center">
-    <img src="https://shuzxie.github.io/shuzxie/data/img/8b12ac2d3915a81502da4c72cfc19d10.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
+    <img src="https://shuzxie.github.io/shuzxie/data/img/IMG_20261104_202935.jpg" width="100%" style="margin-left: auto;margin-right: auto;display: block;">
 </p>
 
 <p align="center">
@@ -27,7 +27,7 @@
 </a>
 
 > [!TIP]  
-> I build open-source Android and desktop applications focused on music, privacy, and expressive interfaces. For collaboration, contact me at [me@miuka.moe](mailto:me@miuka.moe), or support my work through [miuka.moe/donate](https://miuka.moe/donate).
+> I build open-source Android and desktop applications focused on music, privacy, and expressive interfaces. For collaboration, contact me at [me@shuzxie.my.id](mailto:me@shuzxie.my.id), or support my work through [shuzxie.my.id/donate](https://shuzxie.my.id/donate).
 
 #### 使用している言語とフレームワーク Languages & Frameworks I use
 
@@ -35,19 +35,6 @@
 
 #### 公開プロジェクト Public projects shared
 
-> Full list open sourced in https://github.com/rukamori?tab=repositories
-
-| Opengraph 2022 | Opengraph 2024 | Opengraph 2025 |
-| --- | --- | --- |
-| ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner1.png) | ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner2.png) | ![](https://raw.githubusercontent.com/rukamori/rukamori/refs/heads/main/banner/banner3.png) |
-
-#### 注目のプロジェクト Highlights
-
-|Projects|Stars|Forks|
-|:---|:---|:---|
-|[ArchiveTune](https://github.com/rukamori/ArchiveTune): 🎵 The cutest Material 3 Expressive music player for Android, with local-file and YouTube Music support. | ![Stars](https://img.shields.io/github/stars/rukamori/ArchiveTune?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/ArchiveTune?style=flat-square&labelColor=343b41) |
-|[Kagi](https://github.com/rukamori/Kagi): 🔐 A fast, minimal, and secure local-first password manager for desktop. | ![Stars](https://img.shields.io/github/stars/rukamori/Kagi?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Kagi?style=flat-square&labelColor=343b41) |
-|[ArchiveTune Canary](https://github.com/rukamori/canary): Canary Build of ArchiveTune. | ![Stars](https://img.shields.io/github/stars/rukamori/canary?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/canary?style=flat-square&labelColor=343b41) |
-|[Hikki](https://github.com/rukamori/Hikki): 📝 A cute, lightweight, and feature-rich notes app for Android, built with Material 3 Expressive. | ![Stars](https://img.shields.io/github/stars/rukamori/Hikki?style=flat-square&labelColor=343b41) | ![Forks](https://img.shields.io/github/forks/rukamori/Hikki?style=flat-square&labelColor=343b41) |
+> Full list open sourced in https://github.com/shuzxie?tab=repositories
 
 <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="100%" style="transform: rotate(180deg);">
